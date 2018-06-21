@@ -1,0 +1,61 @@
+
+public class TransactionCall {
+	
+	String date 	 = "";
+	String startTime = "";
+	String endTime 	 = "";
+	String number 	 = "";
+	String pro		 = "";
+		
+	public TransactionCall() {
+
+    }
+    public TransactionCall (String date, String startTime, 
+    		String endTime, String number, String pro) {
+        this.date 		= date;
+        this.startTime 	= startTime;
+        this.endTime	= endTime;
+        this.number		= number;
+        this.pro		= pro;
+    }
+    
+    public String getDate() {
+        return date; 
+    }
+    
+    public void setDate (String date) {
+        this.date = date;
+    }
+    
+    public String getStartTime() {
+        return startTime;
+    }
+    
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+    
+    public String getEndTime() {
+        return endTime;
+    }
+    
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+    
+    public String getNumber() {
+        return number;
+    }
+    
+    public void setNumber(String number) {
+        this.number = number;
+    }
+    
+    public String getPro() {
+        return pro;
+    }
+    
+    public void setPro(String pro) {
+        this.pro = pro;
+    }
+}

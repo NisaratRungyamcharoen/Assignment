@@ -1,0 +1,105 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+    table{
+    	border-radius: 5px;
+    	position: relative;
+  		overflow-x: hidden;
+  		border-collapse: separate;
+  		width:1200px;
+    }
+    
+    tbody {
+	  	position: absolute;
+	  	display: block; /*seperates the tbody from the header*/
+	  	width: 1200px;
+	  	height: 450px;
+	  	overflow-x: scroll;
+	}
+	
+	tbody td {
+	  	max-width: 1200px;
+	}
+	
+    tbody tr:nth-child(odd){
+		background-color: #BBD2FA;
+	}
+    
+    #head-box{
+    	width: 102%;
+    	height: 350px;
+    	background-color: #E6E7E8;
+    	margin-top: -22px;
+    	margin-left: -20px;
+    	padding-top:40px !important;
+    }
+    
+    #content-box{
+    	width: 1200px;
+    	height: 450px;
+    	background-color: white;
+    	border-radius: 5px;
+    	margin-top:50px !important;
+    }
+    
+</style>
+<title>Show cost each number</title>
+</head>
+<body>
+	<div id="head-box" align="center">
+		<br/>
+		<span style="font-size:40px; font-weight:bold">Show Cost</span>
+		
+		<div id="content-box" align="center">
+			<table id="show-detail">
+				<thead>
+					<tr style="background-color: #508EF6; height: 50px !important; font-size:20px; color:white">
+						<th style="background-color: #3980F9;">Number</th>
+					    <th>Start Time</th>
+					    <th>End Time</th>
+					    <th>take time</th>
+					    <th>Price</th>
+				  	</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</body>
+
+<script src="bootstrap/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+	    $.ajax({ 
+	        type: 'GET', 
+	        url: 'http://localhost:8080/Assignment/showPrice.json', 
+	        data: { get_param: 'value' }, 
+	        dataType: 'json',
+	        success: function (data) { 
+	            var keyLength = Object.keys(data).length;
+	            var table = document.getElementById('show-detail');
+	            var tbody = document.createElement('tbody');
+	            for(var i=0; i< keyLength; i++){
+	            	var tr = document.createElement('tr');
+	            	tr.setAttribute("style", "height:35px")
+	            	console.log("test");
+	            	for(var j=0; j<data[i].length; j++){
+	            		var td = document.createElement('td');
+	            		td.setAttribute("align", "center")
+	            		td.setAttribute("style", "background-color:")
+	            		var split = data[i][j].split(/:(.+)/)[1];
+	            		console.log(split);
+	            		td.innerHTML = split;
+	            		tr.appendChild(td)
+	            	}
+	            	tbody.appendChild(tr);
+	            }
+	            table.appendChild(tbody);
+	        }
+	    });
+	});
+</script>
+</html>
